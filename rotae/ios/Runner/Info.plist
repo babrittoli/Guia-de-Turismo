@@ -7,7 +7,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Rotae</string>
+	<string>Guia Turismo</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -15,7 +15,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>rotae</string>
+	<string>guia_turismo</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
@@ -66,5 +66,15 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+
+	<key>NSCameraUsageDescription</key>
+	<string>Permites que eu use a camera?</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Posso usar seu microfone??</string>
+ 
+	
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>O app usa sua localização para mostrar sua posição no mapa.</string>
+
 </dict>
 </plist>
