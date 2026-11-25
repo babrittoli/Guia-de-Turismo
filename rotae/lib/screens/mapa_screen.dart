@@ -13,6 +13,8 @@ class MapaScreen extends StatefulWidget {
 }
 
 class _MapaScreenState extends State<MapaScreen> {
+  int _filtro = 0;
+
   @override
   Widget build(BuildContext context) {
     return Consumer<MapaController>(
@@ -25,6 +27,19 @@ class _MapaScreenState extends State<MapaScreen> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              DropdownButton<int>(
+                value: _filtro, // Opção selecionada
+                items: [
+                  DropdownMenuItem(value: 0, child: Text("Todas")),
+                  DropdownMenuItem(value: 1, child: Text("Praias")),
+                  DropdownMenuItem(value: 2, child: Text("Points")),
+                  DropdownMenuItem(value: 3, child: Text("Ilhas")),
+                  DropdownMenuItem(value: 4, child: Text("Gastronomia")),
+                  DropdownMenuItem(value: 5, child: Text("Dicas")),
+                ],
+                // setState redesenha o mapa com o novo filtro
+                onChanged: (valor) => setState(() => _filtro = valor!),
+              ),
               //Se está carregando, mostra o circulo de loading
               mapaController.carregando
                   ? Center(child: CircularProgressIndicator())
@@ -81,6 +96,12 @@ class _MapaScreenState extends State<MapaScreen> {
                                       lugar.longitude <= 180 &&
                                       (lugar.latitude != 0 ||
                                           lugar.longitude != 0),
+                                )
+                                .where(
+                                  // Filtro
+                                  (lugar) =>
+                                      _filtro == 0 ||
+                                      lugar.categoriaId == _filtro,
                                 )
                                 // map = transforma cada lugar em um pin
                                 .map(
