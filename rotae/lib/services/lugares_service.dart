@@ -6,7 +6,7 @@ class LugaresServices {
   //Endpoint = endereço de algo, nesse caso = API
   String endpoint = "https://guia.liliaborges.com.br/lugares";
   int pagina = 1; //Carregar a primeira página
-  int limite = 10; //Carregar limite de itens
+  int limite = 100; //Carregar limite de itens
 
   Future<List<LugaresModel>> buscarLugares() async {
     try {

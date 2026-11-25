@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   ];
 
   final List<String> _cabecalho = [
-    'Guia Turismo',
+    'Rotaê',
     'Tirar foto',
     'Lugares Para visitar',
     'GPS',
@@ -54,6 +54,7 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _paginaAtual,
         //Só para garantir que os icones do BottomNavigationBar apareçam
+        type: BottomNavigationBarType.fixed,
         showSelectedLabels: true,
         showUnselectedLabels: true,
 

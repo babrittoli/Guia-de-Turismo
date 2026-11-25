@@ -81,6 +81,33 @@ class _LoginScreenState extends State<LoginScreen> {
                 },
                 child: Text("Entrar"),
               ),
+
+              //divisão do botão entrar com google
+              SizedBox(height: 50),
+              Row(
+                children: [
+                  Expanded(child: Divider(color: Colors.white)),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: Text(
+                      "ou entre com",
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                  Expanded(child: Divider(color: Colors.white)),
+                ],
+              ),
+              SizedBox(height: 24),
+              IconButton(
+                style: IconButton.styleFrom(backgroundColor: Colors.white),
+                onPressed: () async {
+                  final logou = await controleAuth.autenticarComGoogle();
+                  if (logou && context.mounted) {
+                    Navigator.pushNamed(context, 'home');
+                  }
+                },
+                icon: Image.asset('assets/images/google_logo.png', height: 28),
+              ),
             ],
           ),
         ),

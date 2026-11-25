@@ -26,8 +26,8 @@ class LugaresModel {
     return LugaresModel(
       id: json['id'],
       nome: json['nome'],
-      latitude: json['latitude'],
-      longitude: json['longitude'],
+      latitude: json['latitude'] ?? 0,
+      longitude: json['longitude'] ?? 0,
       descricao: json['descricao'],
       categoria: json['categoria']['nome'] ?? json['categoria']['nome'],
       categoriaId: json['categoriaId'],

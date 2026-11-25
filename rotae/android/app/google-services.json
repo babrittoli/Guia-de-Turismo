@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "983291142768",
+    "project_id": "rotae-813be",
+    "storage_bucket": "rotae-813be.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:983291142768:android:a9461afd02639452460ab5",
+        "android_client_info": {
+          "package_name": "com.example.rotae"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "983291142768-e5l4efo50klsd3jf8dkgsg2dlmv022eq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.rotae",
+            "certificate_hash": "57ccc069264de8f7a79238d35ff94a25fae9b540"
+          }
+        },
+        {
+          "client_id": "983291142768-7vapuc06c3qjvdapl2hs9rhtjkcq6li0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC6IBBAwRDLmiIynQRonk_GZkEtMP1D_NI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "983291142768-7vapuc06c3qjvdapl2hs9rhtjkcq6li0.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "983291142768-iu67185b02l7u873rel6q6j7rvem4vi6.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.rotae"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

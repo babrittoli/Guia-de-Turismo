@@ -19,8 +19,12 @@ import 'package:rotae/screens/login_screen.dart';
 import 'package:rotae/screens/cadastro_lugar.dart';
 import 'package:rotae/screens/mapa_screen.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(Inicializar());
 }
 
@@ -52,7 +56,7 @@ class _InicializarState extends State<Inicializar> {
           theme: controllerThema.temaClaro(),
           darkTheme: controllerThema.temaEscuro(),
           themeMode: controllerThema.temaAtual,
-          initialRoute: 'home',
+          initialRoute: 'login',
           //Define as rotas e em quais classes devem ser chamadas
           routes: {
             'login': (context) => LoginScreen(),

@@ -16,46 +16,89 @@ class _CameraScreenState extends State<CameraScreen> {
       //Consumer vai escutar/ler o controller da camera
       //DEIXANDO CLARO QUE A CAMERA AINDA NÃO SALVA AS FOTOS TIRADAS
       body: Consumer<CameraController>(
-        builder: (context, controleCamera, _) => Column(
+        builder: (context, controleCamera, _) => SingleChildScrollView(
           //Tudo bagulho de design e layout
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Stack(
-              children: [
-                Container(
-                  height: 300,
-                  decoration: BoxDecoration(
-                    color: Theme.of(context).colorScheme.primaryContainer,
-                    border: Border.all(width: 2),
-                    borderRadius: BorderRadius.circular(16),
-                    //chama o metodo exibirImagem que está logo a baixo
-                    image: exibirImagem(controleCamera),
-                  ),
+          child: Column(
+            children: [
+              Container(
+                width: double.infinity, // largura da tela toda
+                height: 500, // altura da caixa
+                margin: EdgeInsets.all(20), // espaço nas bordas da tela
+                decoration: BoxDecoration(
+                  color: Theme.of(context).colorScheme.primary,
+                  border: Border.all(width: 2),
+                  borderRadius: BorderRadius.circular(24),
+                  //chama o metodo exibirImagem que está logo a baixo
+                  image: exibirImagem(controleCamera),
                 ),
-                Positioned(
-                  bottom: 8,
-                  right: 8,
-                  child: IconButton(
-                    onPressed: () => abrirModal(controleCamera, context),
-                    icon: Icon(Icons.camera_alt_rounded),
-                  ),
+                child: controleCamera.imagemSelecionada == null
+                    ? Column(
+                        mainAxisAlignment:
+                            MainAxisAlignment.center, // centraliza na vertical
+                        children: [
+                          Icon(
+                            Icons.camera_alt,
+                            size: 80, // tamanho do ícone
+                            color: Colors.white,
+                          ),
+                          SizedBox(height: 12), // espaço entre ícone e texto
+                          Text(
+                            "Nenhuma foto ainda",
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.white,
+                            ),
+                          ),
+                          Text(
+                            "Tire uma foto ou escolha da galeria",
+                            style: TextStyle(color: Colors.white),
+                          ),
+                        ],
+                      )
+                    : null,
+              ),
+
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20,
+                ), // espaço dos lados
+                child: Column(
+                  children: [
+                    SizedBox(
+                      width: double.infinity, // botão ocupa a largura toda
+                      child: ElevatedButton.icon(
+                        onPressed: () =>
+                            controleCamera.abrirCamera(), // abre a câmera
+                        icon: Icon(Icons.camera_alt),
+                        label: Text("Tirar foto"),
+                      ),
+                    ),
+                    SizedBox(height: 12), // espaço entre os botões
+                    SizedBox(
+                      width: double.infinity,
+                      child: ElevatedButton.icon(
+                        onPressed: () =>
+                            controleCamera.abrirGaleria(), // abre a galeria
+                        icon: Icon(Icons.photo_album),
+                        label: Text("Escolher da galeria"),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
 }
 
-DecorationImage exibirImagem(CameraController controleCamera) {
-  //Se não houver nenhuma imagem selecionada, ele aparece como o placeholder
+DecorationImage? exibirImagem(CameraController controleCamera) {
+  //Se não houver nenhuma imagem selecionada, não mostra imagem nenhuma
   if (controleCamera.imagemSelecionada == null) {
-    return DecorationImage(
-      image: NetworkImage('https://placehold.co/150x150.png', scale: 1.0),
-    );
+    return null; // antes carregava o placeholder 150x150 da internet
   } else {
     //Se houver, ele carrega a imagem e faz ela caber no box
     return DecorationImage(
@@ -63,34 +106,4 @@ DecorationImage exibirImagem(CameraController controleCamera) {
       fit: BoxFit.cover,
     );
   }
-}
-
-void abrirModal(CameraController controleCamera, context) {
-  showBottomSheet(
-    context: context,
-    builder: (context) => SafeArea(
-      bottom: true,
-      child: Wrap(
-        alignment: WrapAlignment.center,
-        children: [
-          ListTile(
-            title: Text("Camera"),
-            leading: Icon(Icons.camera),
-            onTap: () {
-              controleCamera.abrirCamera();
-              Navigator.pop(context);
-            },
-          ),
-          ListTile(
-            title: Text("Galeria"),
-            leading: Icon(Icons.photo_album),
-            onTap: () {
-              controleCamera.abrirGaleria();
-              Navigator.pop(context);
-            },
-          ),
-        ],
-      ),
-    ),
-  );
 }
